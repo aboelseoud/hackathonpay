@@ -18,7 +18,7 @@ Route::get('/products', 'ProductsController@index')->middleware('api');
 Route::get('/users/{id}/children', 'UsersController@getChildren')->middleware('api');
 Route::get('/children/{id}', 'ChildrenController@get')->middleware('api');
 Route::post('/users/{id}/children', 'UsersController@addChild')->middleware('api');
-Route::get('/children/{id}', 'ChildrenController@destroy')->middleware('api');
+Route::get('/children/{id}/destroy', 'ChildrenController@destroy')->middleware('api');
 Route::post('/children/{id}', 'ChildrenController@update')->middleware('api');
 Route::get('/children/{id}/allowed_products', 'ChildrenController@allowedProducts')->middleware('api');
 Route::get('/children/{cid}/add_to_blacklist/{pid}', 'ChildrenController@addToBlacklist')->middleware('api');
@@ -31,7 +31,7 @@ Route::get('/children/{cid}/credit_used_this_month', 'ChildrenController@creditU
 Route::post('/users/{id}/cards', 'UsersController@addCard')->middleware('api');
 Route::get('/users/{id}/cards', 'UsersController@getCards')->middleware('api');
 Route::get('/cards/{id}', 'CardsController@get')->middleware('api');
-Route::get('/cards/{id}', 'CardsController@destroy')->middleware('api');
+Route::get('/cards/{id}/destroy', 'CardsController@destroy')->middleware('api');
 
 
 
