@@ -26,6 +26,23 @@ class UsersController extends Controller
         if ($user) {
             $child = new Child;
             $child->fill($request->toArray());
+
+            if ($request->hasFile('image')) {
+                $destinationPath = 'uploads/img/children';
+                $original_file_name = $request->file('image')->getClientOriginalName();
+                $new_file_name = str_random(30) . $original_file_name;
+                $save_proccess = $request->file('image')->move($destinationPath, $new_file_name);
+                if ($save_proccess) {
+                    if (file_exists($child->image_path)) {
+                        if ($child->image_name != 'default.jpg') {
+                            unlink($child->image_path);
+                        }
+                    }
+                    $child->image_name = $original_file_name;
+                    $child->image_path = $destinationPath . '/' . $new_file_name;
+                }
+            }
+
             $child->parent()->associate($user);
             if ($child->save()) {
                 return ['status' => 1];

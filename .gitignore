@@ -18,3 +18,4 @@ bootstrap/cache/
 storage
 .vagrant
 .idea
+public/uploads

@@ -34,7 +34,7 @@ Route::get('/cards/{id}', 'CardsController@get')->middleware('api');
 Route::post('/cards/{id}', 'CardsController@update')->middleware('api');
 Route::get('/cards/{id}/destroy', 'CardsController@destroy')->middleware('api');
 
-
+Route::post('/verify', 'ChildrenController@verify')->middleware('api');
 
 Route::get('/user', function (Request $request) {
     return $request->user();

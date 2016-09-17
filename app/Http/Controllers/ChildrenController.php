@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Blacklist;
 use App\Child;
 use App\Product;
 use Illuminate\Http\Request;
@@ -38,7 +37,7 @@ class ChildrenController extends Controller
 
     public function allowedProducts($id)
     {
-        return Child::findOrFail($id)->allowedProducts();
+        return Child::findOrFail($id)->products();
     }
 
     public function addToBlacklist($cid, $pid)
@@ -70,11 +69,18 @@ class ChildrenController extends Controller
         return Child::findOrFail($id)->history;
     }
 
-    public function credit($id) {
+    public function credit($id)
+    {
         return Child::findOrFail($id)->credit;
     }
 
-    public function creditUsedThisMonth($id) {
+    public function creditUsedThisMonth($id)
+    {
         return Child::findOrFail($id)->credit_used_this_month;
+    }
+
+    public function verify(Request $request)
+    {
+        Child::verify($request);
     }
 }
