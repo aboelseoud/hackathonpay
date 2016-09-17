@@ -26,7 +26,7 @@ Route::delete('/children/{cid}/remove_from_blacklist/{pid}', 'ChildrenController
 Route::get('/children/{cid}/buy/{pid}', 'ChildrenController@buy')->middleware('api');
 Route::get('/children/{cid}/history', 'ChildrenController@history')->middleware('api');
 Route::get('/children/{cid}/credit', 'ChildrenController@credit')->middleware('api');
-Route::get('/children/{cid}/credit_used_this_month', 'ChildrenController@credit')->middleware('api');
+Route::get('/children/{cid}/credit_used_this_month', 'ChildrenController@creditUsedThisMonth')->middleware('api');
 
 Route::post('/users/{id}/cards', 'UsersController@addCard')->middleware('api');
 Route::get('/users/{id}/cards', 'UsersController@getCards')->middleware('api');

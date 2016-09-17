@@ -71,10 +71,10 @@ class ChildrenController extends Controller
     }
 
     public function credit($id) {
-        return Child::findOrFail($id)->creditUsedThisMonth;
+        return Child::findOrFail($id)->credit;
     }
 
     public function creditUsedThisMonth($id) {
-        return Child::findOrFail($id)->credit;
+        return Child::findOrFail($id)->credit_used_this_month;
     }
 }
