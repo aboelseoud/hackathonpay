@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Card;
 
 class CardsController extends Controller
@@ -20,6 +21,15 @@ class CardsController extends Controller
     public function destroy($id)
     {
         if (Card::findOrFail($id)->delete())
+            return ['status' => 1];
+        return ['status' => 0];
+    }
+
+    public function update($id, Request $request)
+    {
+        $card = Card::findOrFail($id);
+        $card->fill($request->toArray());
+        if ($card->save())
             return ['status' => 1];
         return ['status' => 0];
     }

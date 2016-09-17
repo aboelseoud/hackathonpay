@@ -31,6 +31,7 @@ Route::get('/children/{cid}/credit_used_this_month', 'ChildrenController@creditU
 Route::post('/users/{id}/cards', 'UsersController@addCard')->middleware('api');
 Route::get('/users/{id}/cards', 'UsersController@getCards')->middleware('api');
 Route::get('/cards/{id}', 'CardsController@get')->middleware('api');
+Route::post('/cards/{id}', 'CardsController@update')->middleware('api');
 Route::get('/cards/{id}/destroy', 'CardsController@destroy')->middleware('api');
 
 
