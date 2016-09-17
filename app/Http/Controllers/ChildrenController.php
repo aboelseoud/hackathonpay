@@ -67,7 +67,7 @@ class ChildrenController extends Controller
 
     public function history($id)
     {
-        return Child::findOrFail($id)->transactions;
+        return Child::findOrFail($id)->history;
     }
 
     public function credit($id) {

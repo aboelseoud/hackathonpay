@@ -26,7 +26,8 @@ class Child extends Model
         return $this->hasMany('App\Transaction');
     }
 
-    public function boughtProducts() {
+    public function boughtProducts()
+    {
         return $this->belongsToMany('App\Product', 'transactions')->withTimestamps();;
     }
 
@@ -35,16 +36,24 @@ class Child extends Model
         return $this->belongsToMany('App\Product', 'blacklist')->withTimestamps();;
     }
 
-    public function allowedProducts() {
+    public function allowedProducts()
+    {
         return Product::all()->except($this->blacklist()->pluck('product_id')->all());
     }
 
-    public function getCreditAttribute() {
+    public function getCreditAttribute()
+    {
         return $this->limit - $this->boughtProducts()->sum('price');
     }
 
-    public function getCreditUsedThisMonthAttribute() {
+    public function getCreditUsedThisMonthAttribute()
+    {
         return $this->boughtProducts()->where('transactions.created_at', '>=', Carbon::now()->startOfMonth())->sum('price');
+    }
+
+    public function getHistoryAttribute()
+    {
+        return $this->transactions()->join('products', 'products.id', '=', 'transactions.product_id')->get();
     }
 
 }
