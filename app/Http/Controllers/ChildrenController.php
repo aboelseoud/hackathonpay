@@ -30,6 +30,8 @@ class ChildrenController extends Controller
     {
         $child = Child::findOrFail($id);
         $child->fill($request->toArray());
+        if ($request->input('limit'))
+            $child->limit = $child->credit_used_all_the_time + $request->input('limit');
         if ($child->save())
             return ['status' => 1];
         return ['status' => 0];

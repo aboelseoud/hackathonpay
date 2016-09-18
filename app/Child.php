@@ -58,6 +58,11 @@ class Child extends Model
         return $this->boughtProducts()->where('transactions.created_at', '>=', Carbon::now()->startOfMonth())->sum('price');
     }
 
+    public function getCreditUsedAllTheTimeAttribute()
+    {
+        return $this->boughtProducts()->sum('price');
+    }
+
     public function getHistoryAttribute()
     {
         return $this->transactions()->join('products', 'products.id', '=', 'transactions.product_id')->get();
